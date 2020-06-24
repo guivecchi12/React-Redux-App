@@ -3,9 +3,9 @@ import axios from "axios";
 
 export const TOGGLE_EDITING = "TOGGLE_EDITING";
 export const UPDATE_TITLE = "UPDATE_TITLE";
-export const FETCHING_QUOTE_START = "FETCHING_QUOTE_START";
-export const FETCHING_QUOTE_SUCCESS = "FETCHING_QUOTE_SUCCESS";
-export const FETCHING_QUOTE_FAILURE = "FETCHING_QUOTE_FAILURE";
+export const FETCHING_DOG_START = "FETCHING_DOG_START";
+export const FETCHING_DOG_SUCCESS = "FETCHING_DOG_SUCCESS";
+export const FETCHING_DOG_FAILURE = "FETCHING_DOG_FAILURE";
 
 export function toggleEditing() {
   return { type: "TOGGLE_EDITING" };
@@ -19,19 +19,19 @@ const headers = {
   Accept: "application/json"
 };
 
-export const getQuote = () => dispatch => {
-  dispatch({ type: FETCHING_QUOTE_START });
+export const getDog = () => dispatch => {
+  dispatch({ type: FETCHING_DOG_START });
   axios
-    .get("https://icanhazdadjoke.com/", { headers })
+    .get("https://dog.ceo/api/breeds/image/random", { headers })
     .then(res => {
-      console.log(res);
-      dispatch({ type: FETCHING_QUOTE_SUCCESS, payload: res.data.joke });
+      console.log("api: ",res);
+      dispatch({ type: FETCHING_DOG_SUCCESS, payload: res.data.message });
     })
     .catch(err => {
-      console.log(err);
-      dispatch({
-        type: FETCHING_QUOTE_FAILURE,
-        payload: err.response.message
-      });
+      console.log("api error: ", err);
+    //   dispatch({
+    //     type: FETCHING_QUOTE_FAILURE,
+    //     payload: err.response.message
+    //   });
     });
 };

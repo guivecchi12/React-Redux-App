@@ -1,28 +1,30 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getQuote } from "../actions";
+import { getDog } from "../actions";
 
-const Quote = ({ getQuote, quote, isFetching, error }) => {
+const Dog = ({ getDog, dog, isFetching, error }) => {
   useEffect(() => {
     // run action creator when the component mounts
-    getQuote();
-  }, [getQuote]);
+    getDog();
+  }, [getDog]);
 
   if (isFetching) {
     return <h2>Loading...</h2>;
   }
 
   return (
-    <>
-      <h2>Dad says: {quote}</h2>
-      <button onClick={getQuote}>Get new joke</button>
-    </>
+    <span className = "dogImage">
+      <img src = {dog} alt = "dog picture" />
+      <div>
+        <button onClick={getDog}>Change Dog</button>
+      </div>
+    </span>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    quote: state.quote,
+    dog: state.dog,
     isFetching: state.isFetching,
     error: state.error
   };
@@ -30,5 +32,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getQuote }
-)(Quote);
+  { getDog }
+)(Dog);

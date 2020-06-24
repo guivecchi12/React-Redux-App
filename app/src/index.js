@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 
 import Title from "./components/Title";
 import Dogs from "./components/Dogs";
-import "./App.css";
+import "./index.css"
 
 const logger = ({ getState }) => next => action => {
   console.log("Dispatching action:", action);

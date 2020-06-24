@@ -1,31 +1,31 @@
 import {
     UPDATE_TITLE,
     TOGGLE_EDITING,
-    FETCHING_QUOTE_START,
-    FETCHING_QUOTE_SUCCESS
+    FETCHING_DOG_START,
+    FETCHING_DOG_SUCCESS
   } from "../actions";
   
   const initialState = {
-    title: "Dad Jokes!",
+    title: "Random Dog!",
     editing: false,
     loading: false,
-    quote: null,
+    dog: null,
     isFetching: false,
     error: ""
   };
   
   export const appReducer = (state = initialState, action) => {
     switch (action.type) {
-      case FETCHING_QUOTE_START:
+      case FETCHING_DOG_START:
         return {
           ...state,
           isFetching: true,
           error: ""
         };
-      case FETCHING_QUOTE_SUCCESS:
+      case FETCHING_DOG_SUCCESS:
         return {
           ...state,
-          quote: action.payload,
+          dog: action.payload,
           isFetching: false
         };
       case TOGGLE_EDITING:
